@@ -169,22 +169,22 @@ ${endif}\
 ${if_existing /sys/class/power_supply/BAT0/status Discharging}\
    ${if_match ${battery_percent}>=90}\
 	"full_text":" ${battery_percent}%","color":"\#00ff99","separator":false,"separator_block_width":6},\
-	{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+	{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
    ${else}\
 	   ${if_match ${battery_percent}>=70}\
 		"full_text":" ${battery_percent}%","color":"\#00ff00","separator":false,"separator_block_width":6},\
-		{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+		{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
 	   ${else}\
 		${if_match ${battery_percent}>=45}\
 		   "full_text":" ${battery_percent}%","color":"\#90ff00","separator":false,"separator_block_width":6},\
-		   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+		   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
 		${else}\
 		    ${if_match ${battery_percent}>=10}\
 		      	"full_text":" ${battery_percent}%","color":"\#ccff00","separator":false,"separator_block_width":6},\
-			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
 		    ${else}\
 			"full_text":" ${battery_percent}%","color":"\#ff0000","separator":false,"separator_block_width":6},\
-			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
 		    ${endif}\
 		${endif}\
 	   ${endif}\
@@ -199,22 +199,22 @@ ${else}\
    ${else}\
 	${if_match ${battery_percent}>=90}\
 	   "full_text":" ${battery_percent}%","color":"\#00ff99","separator":false,"separator_block_width":6},\
-	   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+	   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
    	${else}\
 	   ${if_match ${battery_percent}>=70}\
 		"full_text":" ${battery_percent}%","color":"\#00ff00","separator":false,"separator_block_width":6},\
-		{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+		{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
 	   ${else}\
 		${if_match ${battery_percent}>=45}\
 		   "full_text":" ${battery_percent}%","color":"\#90ff00","separator":false,"separator_block_width":6},\
-		   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+		   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
 		${else}\
 		    ${if_match ${battery_percent}>=10}\
 		      	"full_text":" ${battery_percent}%","color":"\#ccff00","separator":false,"separator_block_width":6},\
-			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
 		    ${else}\
 				"full_text":" ${battery_percent}%","color":"\#ff0000","separator":false,"separator_block_width":6},\
-			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
 		    ${endif}\
 		${endif}\
 	   ${endif}\
