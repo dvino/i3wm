@@ -1,0 +1,236 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+
+# Update interval in seconds
+update_interval 2.0
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off.
+short_units yes
+
+# How strict should if_up be when testing an interface for being up?
+# The value is one of up, link or address, to check for the interface
+# being solely up, being up and having link or being up, having link
+# and an assigned IP address. 
+if_up_strictness address
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+# use_spacer should have an argument of left, right, or none
+use_spacer left
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# Stuff after 'TEXT' will be formatted on screen
+TEXT
+
+# JSON for i3bar
+
+
+
+[\
+#
+# Weather SPb #################################################################################################################
+#
+{"full_text":"","color":"\#a0a0ff","separator":false,"separator_block_width":3},\
+{"full_text":"${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ULLI temperature}°C","color":"\#AAF096"},\
+#
+# WiFi ########################################################################################################################
+#
+${if_existing /proc/net/wireless wlp3s0}\
+	{"full_text":"","color":"\#a0a0ff","separator":false,"separator_block_width":6},\
+	{"full_text":"${wireless_essid} ${exec cat /proc/net/wireless | awk '/wlp3s0/ {print $4}'}dB","color":"\#AAF096"},\
+${else}\
+	{"full_text":"","color":"\#aaaaaa"},\
+${endif}\
+#
+# Kernel #######################################################################################################################
+#
+{"full_text":"","color":"\#a0a0ff","separator":false,"separator_block_width":6},\
+{"full_text":"${kernel}","color":"\#aaaaaa","separator":false,"separator_block_width":6},\
+#
+# Disk free space ##############################################################################################################
+#
+{"full_text":" root","color":"\#a0a0ff","separator":false,"separator_block_width":5},\
+{"full_text":"${fs_free /}","color":
+    ${if_match ${fs_free_perc}<90}\
+    	"\#AAF096"},\
+    ${else}\
+		"\#FF3333"},\
+	${endif}\
+#
+##########
+#
+{"full_text":" data","color":"\#a0a0ff","separator":false,"separator_block_width":4},\
+{"full_text":"${fs_free /media/data}","color":
+    ${if_match ${fs_free_perc /media/data}<95}\
+        "\#AAF096"},\
+    ${else}\
+        "\#FF3333"},\
+    ${endif}\
+#
+# CPU temperature ###############################################################################################################
+#
+{"full_text":"","color":"\#a0a0ff","separator":false,"separator_block_width":1},\
+{"full_text":"${acpitemp}°C","color":
+    ${if_match ${acpitemp}<48}\
+		"\#AAF096"},\
+    ${else}\
+    	${if_match ${acpitemp}<53}\
+	     "\#F0DC64"},\
+    	${else}\
+    	     ${if_match ${acpitemp}<56}\
+		"\#FF9933"},\
+    	     ${else}\
+    		${if_match ${acpitemp}>=59}\
+		     "\#FF3333"},\
+    		${endif}\
+	     ${endif}\
+	${endif}\
+    ${endif}\
+#
+# CPU ##########################################################################################################################
+#
+{"full_text":"","color":"\#a0a0ff","separator":false,"separator_block_width":3},\
+{"full_text":"${cpu cpu0}%","color":\
+    ${if_match ${cpu cpu0}<25}\
+	"\#AAF096"\
+    ${else}\
+	${if_match ${cpu cpu0}<50}\
+	    "\#F0DC64"\
+	${else}\
+	    ${if_match ${cpu cpu0}<75}\
+		"\#FF9933"\
+	    ${else}\
+		${if_match ${cpu cpu0}<=100}\
+		    "\#FF3333"\
+		${endif}\
+	    ${endif}\
+	${endif}\
+    ${endif}\
+,"separator":false,"separator_block_width":6},\
+{"full_text":"${freq_g}GHz ${loadavg 1} ${loadavg 2} ${loadavg 3}","color":"\#aaaaaa"},\
+
+#
+# Memory #######################################################################################################################
+#
+{"full_text":"","color":"\#a0a0ff","separator":false,"separator_block_width":3},\
+{"full_text":"${memeasyfree}","color":\
+    ${if_match ${memperc}<30}\
+	"\#AAF096"},\
+    ${else}\
+	${if_match ${memperc}<60}\
+	    "\#F0DC64"},\
+	${else}\
+	    ${if_match ${memperc}<85}\
+		"\#FF9933"},\
+	    ${else}\
+		${if_match ${memperc}>=85}
+		    "\#FF3333"},\
+	    ${endif}\
+	${endif}\
+    ${endif}\
+${endif}\
+#
+# Volume status #################################################################################################################
+#
+#
+${if_match ${exec amixer get Headphone | awk -F'[]%[]' '/Left/ {if ($7 == "on") {  print "1" }}'}!=1}\
+	${if_existing /proc/acpi/ibm/volume on}\
+		{"full_text": " ${execi 1 amixer sget Master,0 | awk -F'[]%[]' '/%/ { print $2"%" }'}","color":"\#ff3333"},\
+	${else}\
+		${if_match ${exec amixer get Master | awk -F'[]%[]' '/%/ {if ($2 <= '50') { print "1" }}'}!=1}\
+			{"full_text": " ${execi 1 amixer sget Master,0 | awk -F'[]%[]' '/%/ { print $2"%" }'}","color":"\#ffffff"},\
+		${else}\
+			${if_match ${exec amixer get Master | awk -F'[]%[]' '/%/ {if ($2 <= '25') { print "1" }}'}!=1}\
+				{"full_text": " ${execi 1 amixer sget Master,0 | awk -F'[]%[]' '/%/ { print $2"%" }'}","color":"\#ffffff"},\
+			${else}\
+				{"full_text": " ${execi 1 amixer sget Master,0 | awk -F'[]%[]' '/%/ { print $2"%" }'}","color":"\#ffffff"},\
+			${endif}\
+		${endif}\
+	${endif}\
+${else}\
+	{"full_text": " ${execi 1 amixer sget Master,0 | awk -F'[]%[]' '/%/ { print $2"%" }'}","color":"\#ffffff"},\
+${endif}\
+#
+# Battery discharging ###########################################################################################################
+#
+{\
+${if_existing /sys/class/power_supply/BAT0/status Discharging}\
+   ${if_match ${battery_percent}>=90}\
+	"full_text":" ${battery_percent}%","color":"\#00ff99","separator":false,"separator_block_width":6},\
+	{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+   ${else}\
+	   ${if_match ${battery_percent}>=70}\
+		"full_text":" ${battery_percent}%","color":"\#00ff00","separator":false,"separator_block_width":6},\
+		{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+	   ${else}\
+		${if_match ${battery_percent}>=45}\
+		   "full_text":" ${battery_percent}%","color":"\#90ff00","separator":false,"separator_block_width":6},\
+		   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+		${else}\
+		    ${if_match ${battery_percent}>=10}\
+		      	"full_text":" ${battery_percent}%","color":"\#ccff00","separator":false,"separator_block_width":6},\
+			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+		    ${else}\
+			"full_text":" ${battery_percent}%","color":"\#ff0000","separator":false,"separator_block_width":6},\
+			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+		    ${endif}\
+		${endif}\
+	   ${endif}\
+   ${endif}\
+#
+# Battery charging ##
+#
+${else}\
+ ${if_existing /sys/class/power_supply/BAT0/status Charging}\
+   ${if_match ${battery_percent}>=100}\
+	"full_text":" ${battery_percent}%","color":"\#00ff99"},\
+   ${else}\
+	${if_match ${battery_percent}>=90}\
+	   "full_text":" ${battery_percent}%","color":"\#00ff99","separator":false,"separator_block_width":6},\
+	   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+   	${else}\
+	   ${if_match ${battery_percent}>=70}\
+		"full_text":" ${battery_percent}%","color":"\#00ff00","separator":false,"separator_block_width":6},\
+		{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+	   ${else}\
+		${if_match ${battery_percent}>=45}\
+		   "full_text":" ${battery_percent}%","color":"\#90ff00","separator":false,"separator_block_width":6},\
+		   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+		${else}\
+		    ${if_match ${battery_percent}>=10}\
+		      	"full_text":" ${battery_percent}%","color":"\#ccff00","separator":false,"separator_block_width":6},\
+			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+		    ${else}\
+				"full_text":" ${battery_percent}%","color":"\#ff0000","separator":false,"separator_block_width":6},\
+			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}m]","color":"\#aaaaaa"},\
+		    ${endif}\
+		${endif}\
+	   ${endif}\
+      ${endif}\
+   ${endif}\
+ ${else}
+#
+#Not battery found ##
+#
+   "full_text":" NOT BAT","color":"\#0000ff"},\
+${endif}\
+${endif}\
+
+#
+# Date & time ###############################################################################################################################
+#
+{"full_text":"${time %a %d.%m.%Y}","color":"\#aaaaaa","separator":false,"separator_block_width":6},\
+{"full_text":"${time %R} ","color":"\#00ff55","separator":false}\
+],
