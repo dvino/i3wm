@@ -227,10 +227,13 @@ ${else}\
 		${if_existing /sys/class/power_supply/BAT0/status Unknown}\
 			{"full_text":" 100%","color":"\#00ff99"},\
 		${else}\
-			#
-			#Not battery found ##########################################
-			#
-   			{"full_text":"","color":"\#0000ff"},\
+#
+#Not battery found ##########################################
+#
+			${if_existing /sys/class/power_supply/BAT0/status}\
+			${else}\
+   				{"full_text":"","color":"\#0000ff"},\
+			${endif}\
 	${endif}\
 ${endif}\
 #
