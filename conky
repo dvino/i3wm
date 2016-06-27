@@ -56,7 +56,7 @@ ${endif}\
 #
 # Kernel #######################################################################################################################
 #
-{"full_text":"","color":"\#a0a0ff","separator":false,"separator_block_width":6},\
+{"full_text":"","color":"\#a0a0ff"},\
 {"full_text":"${kernel}","color":"\#aaaaaa","separator":false,"separator_block_width":6},\
 #
 # Disk free space ##############################################################################################################
@@ -165,72 +165,74 @@ ${endif}\
 #
 # Battery discharging ###########################################################################################################
 #
-{\
 ${if_existing /sys/class/power_supply/BAT0/status Discharging}\
-   ${if_match ${battery_percent}>=90}\
-	"full_text":" ${battery_percent}%","color":"\#00ff99","separator":false,"separator_block_width":6},\
-	{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
-   ${else}\
-	   ${if_match ${battery_percent}>=70}\
-		"full_text":" ${battery_percent}%","color":"\#00ff00","separator":false,"separator_block_width":6},\
+   	${if_match ${battery_percent}>=90}\
+		{"full_text":" ${battery_percent}%","color":"\#00ff99","separator":false,"separator_block_width":6},\
 		{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
-	   ${else}\
-		${if_match ${battery_percent}>=45}\
-		   "full_text":" ${battery_percent}%","color":"\#90ff00","separator":false,"separator_block_width":6},\
-		   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
-		${else}\
-		    ${if_match ${battery_percent}>=10}\
-		      	"full_text":" ${battery_percent}%","color":"\#ccff00","separator":false,"separator_block_width":6},\
-			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
-		    ${else}\
-			"full_text":" ${battery_percent}%","color":"\#ff0000","separator":false,"separator_block_width":6},\
-			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
-		    ${endif}\
-		${endif}\
-	   ${endif}\
-   ${endif}\
-#
-# Battery charging ##
-#
-${else}\
- ${if_existing /sys/class/power_supply/BAT0/status Charging}\
-   ${if_match ${battery_percent}>=100}\
-	"full_text":" ${battery_percent}%","color":"\#00ff99"},\
-   ${else}\
-	${if_match ${battery_percent}>=90}\
-	   "full_text":" ${battery_percent}%","color":"\#00ff99","separator":false,"separator_block_width":6},\
-	   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
    	${else}\
-	   ${if_match ${battery_percent}>=70}\
-		"full_text":" ${battery_percent}%","color":"\#00ff00","separator":false,"separator_block_width":6},\
-		{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
-	   ${else}\
-		${if_match ${battery_percent}>=45}\
-		   "full_text":" ${battery_percent}%","color":"\#90ff00","separator":false,"separator_block_width":6},\
-		   {"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
-		${else}\
-		    ${if_match ${battery_percent}>=10}\
-		      	"full_text":" ${battery_percent}%","color":"\#ccff00","separator":false,"separator_block_width":6},\
+	   	${if_match ${battery_percent}>=70}\
+			{"full_text":" ${battery_percent}%","color":"\#00ff00","separator":false,"separator_block_width":6},\
 			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
-		    ${else}\
-				"full_text":" ${battery_percent}%","color":"\#ff0000","separator":false,"separator_block_width":6},\
-			{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
-		    ${endif}\
-		${endif}\
-	   ${endif}\
-      ${endif}\
-   ${endif}\
- ${else}
-#
-#Not battery found ##
-#
-   "full_text":" NOT BAT","color":"\#0000ff"},\
+	   	${else}\
+			${if_match ${battery_percent}>=45}\
+		   		{"full_text":" ${battery_percent}%","color":"\#90ff00","separator":false,"separator_block_width":6},\
+		   		{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
+			${else}\
+		    	${if_match ${battery_percent}>=10}\
+		      		{"full_text":" ${battery_percent}%","color":"\#ccff00","separator":false,"separator_block_width":6},\
+					{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
+		    	${else}\
+					{"full_text":" ${battery_percent}%","color":"\#ff0000","separator":false,"separator_block_width":6},\
+					{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
+		    	${endif}\
+			${endif}\
+	   	${endif}\
+   	${endif}\
+	#
+	# Battery charging #######################################33
+	#
+${else}\
+	${if_existing /sys/class/power_supply/BAT0/status Charging}\
+   		${if_match ${battery_percent}>=100}\
+			{"full_text":" ${battery_percent}%","color":"\#00ff99"},\
+ 		${else}\
+			${if_match ${battery_percent}>=99}\
+            	{"full_text":" ${battery_percent}%","color":"\#00ff99"},\
+	  		${else}\
+				${if_match ${battery_percent}>=90}\
+	   				{"full_text":" ${battery_percent}%","color":"\#00ff99","separator":false,"separator_block_width":6},\
+	   				{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
+	   			${else}\
+		   			${if_match ${battery_percent}>=70}\
+						{"full_text":" ${battery_percent}%","color":"\#00ff00","separator":false,"separator_block_width":6},\
+						{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
+	   				${else}\
+						${if_match ${battery_percent}>=45}\
+		   					{"full_text":" ${battery_percent}%","color":"\#90ff00","separator":false,"separator_block_width":6},\
+			   				{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
+						${else}\
+		    				${if_match ${battery_percent}>=10}\
+		      					{"full_text":" ${battery_percent}%","color":"\#ccff00","separator":false,"separator_block_width":6},\
+								{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
+		    				${else}\
+								{"full_text":" ${battery_percent}%","color":"\#ff0000","separator":false,"separator_block_width":6},\
+								{"full_text": "[${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 1}h ${exec acpi -b | cut -d ' ' -f 5 | cut -d : -f 2}m]","color":"\#aaaaaa"},\
+		    				${endif}\
+						${endif}\
+	   				${endif}\
+      			${endif}\
+   			${endif}\
+ 		${else}\
+	${else}\
+		#
+		#Not battery found ##########################################
+		#
+   		{"full_text":"","color":"\#0000ff"},\
+	${endif}\
 ${endif}\
-${endif}\
-
 #
 # Date & time ###############################################################################################################################
 #
 {"full_text":"${time %a %d.%m.%Y}","color":"\#aaaaaa","separator":false,"separator_block_width":6},\
-{"full_text":"${time %R} ","color":"\#00ff55","separator":false}\
+{"full_text":"${time %R} ","color":"\#5070ff","separator":false}\
 ],
