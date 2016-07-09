@@ -1,4 +1,7 @@
 ##i3wm config на основе Archlinux
+ 
+![screenshot](https://c1.staticflickr.com/9/8817/27574168173_8e02e15142_b.jpg)
+ 
 Установка модифицированного [i3-gaps-git](https://github.com/Airblader/i3/tree/gaps), панели [i3blocks-gaps-git ](https://github.com/Airblader/i3blocks-gaps), красивого меню [rofi-git](https://davedavenport.github.io/rofi/), модифицированного dmenu [j4-dmenu-desktop](https://github.com/enkore/j4-dmenu-desktop), катологизированное меню [morc_menu](https://github.com/Boruch-Baum/morc_menu)
 ```
 yaourt -Sy --noconfirm i3-gaps-git rofi-git j4-dmenu-desktop rofi-git j4-dmenu-desktop
