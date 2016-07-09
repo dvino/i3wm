@@ -1,0 +1,5 @@
+#!/bin/bash
+
+wego
+read
+exit 0

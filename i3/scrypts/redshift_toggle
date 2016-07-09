@@ -1,0 +1,10 @@
+#!/bin/bash
+if [[ -n $(ps ax | grep redshift | grep -v grep | grep -v BLOCK_BUTTON) ]] ; then
+	redshift -t 6500:3800 &
+	echo 
+else
+	killall redshift
+	redshift -O 6500 &
+	echo 
+fi	
+exit 0

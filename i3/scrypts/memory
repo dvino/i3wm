@@ -1,0 +1,8 @@
+#!/bin/bash
+memory=$(free -h | grep "Mem" | awk '{print $3h}')
+mem_perc=$(free | awk ' /Mem/ {print int($3*100/$2)}')
+if [[ $mem_perc -gt 92 ]] ; then
+    echo "<span color='#FF3333'> </span>$memory($mem_perc%)"
+else
+    echo " $memory($mem_perc%)"
+fi

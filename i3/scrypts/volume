@@ -1,0 +1,24 @@
+#!/bin/bash
+
+color="color='#FFFFFF'"
+volume=$(amixer sget Master | awk -F'[]%[]' '/%/ { print $2}'| head -n 1)
+
+if [[ "$volume" -ge 50 ]] ; then
+    logo=''
+elif [[ "$volume" -ge 25 ]] ; then
+    logo=''
+else
+    logo=''
+fi
+
+[[ "$(pacmd info  | grep headphones | cut -d ')' -f 1 | cut -d ':' -f 3 | head -n 1 | tr -d ' ')" = "yes"    ]] && logo=''
+
+[[ -n $(pacmd info  | grep handsfree) ]] && logo=''
+
+if [[ "$(awk '/mute/ {print $2}' /proc/acpi/ibm/volume)" = "on" ]] ; then
+    logo=''
+	color="color='#FF3333'"
+fi
+
+echo "<span $color>$logo</span> $volume% "
+

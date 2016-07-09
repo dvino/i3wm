@@ -1,0 +1,27 @@
+#!/bin/python
+# -*- coding: utf-8 -*-
+
+
+import vk_api
+
+
+def main():
+
+    login, password = 'LOGIN', 'PASSWD'
+    vk_session = vk_api.VkApi(login, password)
+
+    try:
+        vk_session.authorization()
+    except vk_api.AuthorizationError as error_msg:
+        print(error_msg)
+        return
+
+    vk = vk_session.get_api()
+
+    access_rights = ["messages"]
+    token = ["access_token=ACCESS_TOKEN"]
+    response = vk.messages.getDialogs(unread=1)
+    if response['items']:
+        print(" "+str(response['count']))
+if __name__ == '__main__':
+    main()

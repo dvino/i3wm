@@ -1,0 +1,3 @@
+#!/bin/bash
+[[ -n $(ps ax | grep gnome-system-monitor | grep -v grep | grep -v BLOCK_BUTTON) ]] && killall gnome-system-monitor || gnome-system-monitor &
+exit 0

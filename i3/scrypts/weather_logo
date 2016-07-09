@@ -1,0 +1,23 @@
+#!/bin/bash
+
+weather=$(cat /tmp/weather)
+
+icon=$(echo $weather | awk -F '"icon":"' '{print $2}' | cut -d '"' -f 1)
+
+[[ -z $icon ]] && logo=''
+
+[[ $icon == "clear-day" ]] && logo=''
+[[ $icon == "clear-night" ]] && logo=''
+[[ $icon == "rain" ]] && logo=''
+[[ $icon == "snow" ]] && logo=''
+[[ $icon == "sleet" ]] && logo=''
+[[ $icon == "wind" ]] && logo=''
+[[ $icon == "fog" ]] && logo=''
+[[ $icon == "cloudy" ]] && logo=''
+[[ $icon == "partly-cloudy-day" ]] && logo=''
+[[ $icon == "partly-cloudy-night" ]] && logo=''
+[[ $icon == "thunderstorm" ]] && logo=''
+
+echo "<span font_desc='Weather Icons bold 11'>$logo </span>"
+
+

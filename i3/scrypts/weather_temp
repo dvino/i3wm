@@ -1,0 +1,13 @@
+#!/bin/bash
+
+api=YOUR_FORECAST.IO_API_KEY_HERE
+location=59.8944,30.2642
+
+curl https://api.forecast.io/forecast/$api/$location > /tmp/weather
+
+weather=$(cat /tmp/weather)
+
+[[ -n $weather ]] &&  temp=$(echo $weather | awk -F '"temperature":' '{print int(($2-32)/1.8+0.5)}')
+
+[[ -n $weather ]] && echo "$temp°C"
+

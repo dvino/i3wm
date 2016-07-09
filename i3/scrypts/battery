@@ -1,0 +1,48 @@
+#!/bin/bash
+
+battery_percent=$(acpi -b | sed 's/[%,]//g' | cut -d ' ' -f 4)
+color="color='#FFFFFF'"
+battery_ststus=$(cat /sys/class/power_supply/BAT0/status)
+
+# remaining time of charge/discharge
+remaining="[$(acpi -b | cut -d ' ' -f 5 | cut -d : -f 1-2)]"
+
+# Battery discharging ####################################
+if [[ $battery_ststus  = "Discharging" ]] ; then
+    if [[ $battery_percent -ge 90 ]] ; then
+        logo=""
+    elif [[ $battery_percent -ge 70 ]] ; then
+        logo=""
+    elif [[ $battery_percent -ge 45 ]] ; then
+        logo=" "          
+    elif [[ $battery_percent -ge 12 ]] ; then
+        logo=" "
+    else
+		logo=" "
+		color="color='#FF3333'"
+    fi
+
+	echo "<span $color>$logo</span> $battery_percent% $remaining "
+#	echo "<span $color>$logo</span> $battery_percent% "
+
+# Battery charging #######################################
+elif [[ $battery_ststus = "Unknown" ]] ; then
+	logo=""
+    color="color='#33FF33'"
+	echo "<span $color>$logo</span> 100% "
+#	echo "<span $color>$logo</span> 100% "
+
+elif [[ $battery_ststus = "Charging" ]] ; then
+    logo=""
+	echo "<span $color>$logo</span> $battery_percent% $remaining "
+#	echo "<span $color>$logo</span> $battery_percent% "
+
+#Not battery found #######################################
+elif [[ -z $battery_ststus ]] ; then
+	logo=""
+    battery_percent=
+    color="color='#3399FF'"
+	echo "<span $color>$logo</span>"
+#	echo "<span $color>$logo</span>"
+fi
+

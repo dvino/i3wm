@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# /proc/stat
+#       user    nice    system  idle    iowait  irq softirq steal   guest   guest_nice
+#cpu    2       3       4       5       6       7   8       9       10      11
+
+PrevCPU=$(grep 'cpu ' /proc/stat | head -n1)
+sleep 1
+CPU=$(grep 'cpu ' /proc/stat | head -n1)
+
+#PrevIdle = previdle + previowait
+PrevIdle=$( echo $PrevCPU | awk '{print int($5+$6)}' )
+#Idle = idle + iowait
+Idle=$( echo $CPU | awk '{print int($5+$6)}' )
+
+#PrevNonIdle = prevuser + prevnice + prevsystem + previrq + prevsoftirq + prevsteal
+PrevNonIdle=$( echo $PrevCPU | awk '{print int($2+$3+$4+$7+$8+$9)}' )
+#NonIdle = user + nice + system + irq + softirq + steal
+NonIdle=$( echo $CPU | awk '{print int($2+$3+$4+$7+$8+$9)}' )
+
+PrevTotal=$(( $PrevIdle + $PrevNonIdle ))
+Total=$(( $Idle + $NonIdle ))
+
+# differentiate: actual value minus the previous one
+totald=$(( $Total - $PrevTotal ))
+idled=$(( $Idle - $PrevIdle))
+
+CPU_Percentage=$(( ($totald-$idled)*100/$totald ))
+echo "<span font_desc='Icons'> </span>$CPU_Percentage% "
+
+if [[ $CPU_Percentage > 90 ]] ; then
+    echo "<span color='#FF3333' font_desc='Icons'> </span>$CPU_Percentage% "
+fi

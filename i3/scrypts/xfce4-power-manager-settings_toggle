@@ -1,0 +1,3 @@
+#!/bin/bash
+[[ -n $(ps ax | grep xfce4-power-manager-settings | grep -v grep | grep -v BLOCK_BUTTON) ]] && killall xfce4-power-manager-settings || xfce4-power-manager-settings &
+exit 0
