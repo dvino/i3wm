@@ -37,7 +37,7 @@ cp i3wm/i3 ~/.config
 pip install vk_api
 ```
 В сам скрипт **.config/i3/scrypts/vk** внести свои данные: вписать логин с паролем **USERNAME, PASSWORD**, а так же **ACCESS TOKEN**, который можно получить следующим образом:
-Завести себе [id приложения](https://new.vk.com/editapp?act=create). Тип приложения должен обязательно быть **standalone**. и заменяем в ссылке следующего вида NNNNNNNN на ID вашего приложения
+Завести себе [id приложения](https://new.vk.com/editapp?act=create). Тип приложения должен обязательно быть **standalone**. и заменяем, в ссылке следующего, вида NNNNNNNN на ID вашего приложения
 ```
 https://oauth.vk.com/authorize?client_id=NNNNNNN&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=messages&response_type=token&v=5.52
 ```
