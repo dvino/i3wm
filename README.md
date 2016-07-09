@@ -41,7 +41,7 @@ https://oauth.vk.com/authorize?client_id=NNNNNNN&display=page&redirect_uri=https
 Копируем ее в браузер. Из ответной ссылки после авторизации и подтверждения доступа берем значение **access token**
  
 #####weather 
-Для работы виждета погоды, а так же для погодного скрипта [wego](https://github.com/schachmat/wego) необходимо зарегистрировать акаунт https://github.com/schachmat/wego. Далее внесите значения своего api и местоположения в **.config/i3/scrypts/weather_temp** 
+Для работы виждета погоды, а так же для погодного скрипта [wego](https://github.com/schachmat/wego) необходимо зарегистрировать акаунт [developer.forecast.io](https://developer.forecast.io/register). Далее внесите значения своего api и местоположения в **.config/i3/scrypots/weather_temp** 
 
 ###Обратная связь
 [vk.com](https://new.vk.com/danil_vinokurov); [email](danil@vinokurov.tk)
