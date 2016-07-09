@@ -25,23 +25,23 @@ cd /tmp
 https://github.com/dvino/i3wm.git
 cp i3wm/i3 ~/.config
 ```
-> ####mail 
-> Для работы виджета проверки почты необходимо внести свои данные в скрипт **.config/i3/scrypts/mail** заменить адрес сервера **imap.EXAMPLE.COM** и логин с паролем **USERNAME, PASSWORD**
-> 
-> ####vk
-> Для виджета проверки входящий сообщений vk.com необходимо [установить модуль](https://aur.archlinux.org/packages/python-pip-git/) vk\_api для python
+#####mail 
+Для работы виджета проверки почты необходимо внести свои данные в скрипт **.config/i3/scrypts/mail** заменить адрес сервера **imap.EXAMPLE.COM** и логин с паролем **USERNAME, PASSWORD**
+ 
+#####vk
+Для виджета проверки входящий сообщений vk.com необходимо [установить модуль](https://aur.archlinux.org/packages/python-pip-git/) vk\_api для python
 ```
 pip install vk_api
 ```
-> В сам скрипт **.config/i3/scrypts/vk** внести свои данные: вписать логин с паролем **USERNAME, PASSWORD**, а так же **ACCESS TOKEN**, который можно получить следующим образом:
-> Завести себе [id приложения](https://new.vk.com/editapp?act=create). Тип приложения должен обязательно быть **standalone**. и заменяем в ссылке следующего вида NNNNNNNN на ID вашего приложения
+В сам скрипт **.config/i3/scrypts/vk** внести свои данные: вписать логин с паролем **USERNAME, PASSWORD**, а так же **ACCESS TOKEN**, который можно получить следующим образом:
+Завести себе [id приложения](https://new.vk.com/editapp?act=create). Тип приложения должен обязательно быть **standalone**. и заменяем в ссылке следующего вида NNNNNNNN на ID вашего приложения
 ```
 https://oauth.vk.com/authorize?client_id=NNNNNNN&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=messages&response_type=token&v=5.52
 ```
-> Копируем ее в браузер. Из ответной ссылки после авторизации и подтверждения доступа берем значение **access token**
+Копируем ее в браузер. Из ответной ссылки после авторизации и подтверждения доступа берем значение **access token**
  
-> ####weather 
-> Для работы виждета погоды, а так же для погодного скрипта [wego](https://github.com/schachmat/wego) необходимо зарегистрировать акаунт https://github.com/schachmat/wego. Далее внесите значения своего api и местоположения в **.config/i3/scrypts/weather_temp** 
+#####weather 
+Для работы виждета погоды, а так же для погодного скрипта [wego](https://github.com/schachmat/wego) необходимо зарегистрировать акаунт https://github.com/schachmat/wego. Далее внесите значения своего api и местоположения в **.config/i3/scrypts/weather_temp** 
 
 ###Обратная связь
 [vk.com](https://new.vk.com/danil_vinokurov); [email](danil@vinokurov.tk)
