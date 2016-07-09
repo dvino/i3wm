@@ -13,7 +13,7 @@ sudo make install
 ```
 Шрифты
 ```
-yaourt -Sy --noconfirm ttf-weather-icons ttf-font-awesome ttf-ubuntu-font-family
+yaourt -S --noconfirm ttf-weather-icons ttf-font-awesome ttf-ubuntu-font-family
 ```
 Индикатор раскладки sbxkb, установка обоев nitrogen, компизный менеджер compton, менеджер питания xfce4-power-manager, минималистичный демон системных уведомлений dunst, изменение цветовой температуры дисплея от времени суток redshift, bluetooth апплет blueman-applet, автомотическое монтирование съемных носителей udiskie, управление медиаплеерами при помощи горячих клавиш playerctl
 ```
