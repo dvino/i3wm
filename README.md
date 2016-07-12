@@ -1,10 +1,12 @@
 ##i3wm config на основе Archlinux
  
-![screenshot](https://c1.staticflickr.com/9/8817/27574168173_8e02e15142_b.jpg)
+![screenshot](https://c1.staticflickr.com/9/8669/28164765402_3ecc51ce66_b.jpg)
  
-Установка модифицированного [i3-gaps-git](https://github.com/Airblader/i3/tree/gaps), панели [i3blocks-gaps-git ](https://github.com/Airblader/i3blocks-gaps), красивого меню [rofi-git](https://davedavenport.github.io/rofi/), модифицированного dmenu [j4-dmenu-desktop](https://github.com/enkore/j4-dmenu-desktop), катологизированное меню [morc_menu](https://github.com/Boruch-Baum/morc_menu)
+![screenshot](https://c1.staticflickr.com/9/8597/28268451345_3994c5391b_b.jpg)
+ 
+Установка модифицированного [i3-gaps-git](https://github.com/Airblader/i3/tree/gaps), панели [i3blocks-gaps-git ](https://github.com/Airblader/i3blocks-gaps), красивого меню [rofi-git](https://davedavenport.github.io/rofi/), модифицированного dmenu [j4-dmenu-desktop](https://github.com/enkore/j4-dmenu-desktop), катологизированное меню [morc_menu](https://github.com/Boruch-Baum/morc_menu), bash JOSN [jq](https://www.archlinux.org/packages/?name=jq)
 ```
-yaourt -Sy --noconfirm i3-gaps-git rofi-git j4-dmenu-desktop rofi-git j4-dmenu-desktop
+yaourt -Sy --noconfirm i3-gaps-git rofi-git j4-dmenu-desktop rofi-git j4-dmenu-desktop jq
  
 cd /tmp
 git clone https://github.com/Boruch-Baum/morc_menu.git
@@ -26,7 +28,8 @@ yaourt -S --noconfirm sbxkb nitrogen compton xfce4-power-manager dunst redshift 
 ```
 cd /tmp
 https://github.com/dvino/i3wm.git
-cp i3wm/i3 ~/.config
+cp i3wm/{i3,morc_menu} ~/.config
+cp Xresources ~/.Xresources 
 ```
 #####mail 
 Для работы виджета проверки почты необходимо внести свои данные в скрипт **.config/i3/scrypts/mail** заменить адрес сервера **imap.EXAMPLE.COM** и логин с паролем **USERNAME, PASSWORD**
