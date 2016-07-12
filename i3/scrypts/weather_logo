@@ -3,7 +3,7 @@
 weather=$(cat /tmp/weather)
 
 #icon=$(echo $weather | awk -F '"icon":"' '{print $2}' | cut -d '"' -f 1)
-icon=$(echo $weather | jq -M '.currently.temperature' | tr -d '"')
+icon=$(echo $weather | jq -M '.currently.icon' | tr -d '"')
 
 [[ -z $icon ]] && logo=''
 
