@@ -437,10 +437,13 @@ bar {
 #       tray_output eDP1
 #		tray_output none
 
+        bindsym button3 exec --no-startup-id morc_menu
         bindsym button4 nop
         bindsym button5 nop
-		font pango:FontAwesome, Ubuntu 10.5
-		height 24
+		font pango:FontAwesome, Ubuntu 11
+		height 25
+	    position top
+
 
         colors {
         background $transparent

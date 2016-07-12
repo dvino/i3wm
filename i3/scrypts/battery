@@ -14,11 +14,11 @@ if [[ $battery_ststus  = "Discharging" ]] ; then
     elif [[ $battery_percent -ge 70 ]] ; then
         logo=""
     elif [[ $battery_percent -ge 45 ]] ; then
-        logo=" "          
+        logo=""          
     elif [[ $battery_percent -ge 12 ]] ; then
-        logo=" "
+        logo=""
     else
-		logo=" "
+		logo=""
 		color="color='#FF3333'"
     fi
 
